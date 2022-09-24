@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Comments";
+    Layout = "_Layout";
+}
+<div>
+    Total Comments: @ViewData["CommentCount"]
+</div>
+
+<ul>     
+  @foreach(var item in Model)
+    {
+         <li>@item</li>
+     }
+</ul>
+   

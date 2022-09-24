@@ -1,0 +1,21 @@
+﻿@model Lab2.Models.comment;
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+@{
+    ViewData["Title"] = "Index";
+}
+<h1>View Component Example  </h1>
+<p>Add new comments on below text area....</p>
+
+<form asp-action="index" asp-controller="Article" method="post">
+    <h3>Comments</h3>
+    @Html.TextAreaFor(m => m.comments)
+    <div></div>
+    <input type="submit" value="Post Comment" />
+    @if (ViewData["comments"] != null)
+    {
+        string value = ViewData["comments"].ToString();
+        @await Component.InvokeAsync("ArticleComments",new {cs = ViewData["comments"].ToString()})
+    }
+</form>

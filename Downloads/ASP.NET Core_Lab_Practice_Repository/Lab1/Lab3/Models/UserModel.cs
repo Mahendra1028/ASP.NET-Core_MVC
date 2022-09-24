@@ -1,0 +1,41 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+
+namespace Lab3.Models
+{
+    public class UserModel
+    {
+        [Required(ErrorMessage = "Please Enter Name")]
+        public string Name { get; set; }
+
+        [Required(ErrorMessage = "Please Enter User Name")]
+        [MinLength(3, ErrorMessage = "Enter the User Name more than 3 chars")]
+        public string Username { get; set; }
+
+        [Required(ErrorMessage = "Please Enter Email")]
+        [RegularExpression(@"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$",
+ErrorMessage = "Invalid email format")]
+        public string Email { get; set; }
+
+        [Required(ErrorMessage = "Please Enter Password")]
+        [RegularExpression("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$",
+            ErrorMessage = "Required with (1 Uppercase, 1 Number, 1 Special Char and 1 Lowercase Char) and Min Length :8 Chars")]
+        public string Password { get; set; }
+
+        [Required(ErrorMessage = "Please Enter Confirm Password")]
+        [Compare("Password", ErrorMessage = "Confirm Password does not match")]
+        public string ConfirmPassword { get; set; }
+
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Please enter valid phone number")]
+        public string? Contact { get; set; }
+        [Required(ErrorMessage = "Gender is required")]
+        public string Gender { get; set; }
+
+        [Display(Name = "Accept Terms")]
+        [ValidateCheckBox(ErrorMessage = "Please Accept Terms")]
+        public bool IsTerms { get; set; }
+    }
+}

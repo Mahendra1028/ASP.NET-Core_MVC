@@ -1,0 +1,24 @@
+﻿@model Lab1.Areas.Admin.Models.LoginModel
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+@{
+
+    ViewData["Title"] = "Admin Login";
+    Layout = "_Layout";
+}
+
+<h2>Admin Login</h2>
+@Html.AntiForgeryToken()
+<form asp-controller="Login" asp-action="Login" method="Post" class="pb-3">
+    <div>
+        Username: @Html.TextBoxFor(m => m.Username)
+    </div>
+    <div></div>
+    <div>
+        Password: @Html.PasswordFor(m => m.Password)
+    </div>
+    <div class="">
+        <input type="submit" value="Login" />
+    </div>
+</form>
